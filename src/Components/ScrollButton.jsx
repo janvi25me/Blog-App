@@ -1,36 +1,50 @@
-import { useState } from "react";
-import { FaArrowCircleUp } from "react-icons/fa";
-import { Button } from "./styles.js";
+import { useState, useEffect } from "react";
 
-const ScrollButton = () => {
-  const [visible, setVisible] = useState(false);
+const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setVisible(true);
-    } else if (scrolled <= 300) {
-      setVisible(false);
+  const toggleVisibility = () => {
+    if (window.scrollY > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
   };
 
-  const scrollToTop = () => {
+  const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
 
-  window.addEventListener("scroll", toggleVisible);
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisibility);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, []);
 
   return (
-    <Button>
-      <FaArrowCircleUp
-        onClick={scrollToTop}
-        style={{ display: visible ? "inline" : "none" }}
-      />
-    </Button>
+    isVisible && (
+      <button
+        onClick={handleScrollToTop}
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#007bff",
+          color: "#fff",
+          border: "none",
+          borderRadius: "30%",
+          cursor: "pointer",
+        }}
+      >
+        <i className="fa-solid fa-angle-up"></i>
+      </button>
+    )
   );
 };
 
-export default ScrollButton;
+export default ScrollToTop;
