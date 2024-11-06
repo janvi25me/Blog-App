@@ -6,6 +6,7 @@ const BlogList = ({ posts }) => {
   const [searchItem, setSearchItem] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(posts);
   const [theme, setTheme] = useState("dark");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -34,6 +35,10 @@ const BlogList = ({ posts }) => {
     document.body.dataset.theme = theme;
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   useEffect(() => {
     const userSetPreference = getUserSetPreference();
 
@@ -52,32 +57,71 @@ const BlogList = ({ posts }) => {
               <h1>Blog List</h1>
             </div>
 
-            <div className="search-bar">
-              <input
-                type="text"
-                id="search"
-                className="search"
-                placeholder="search title"
-                value={searchItem}
-                onChange={handleInputChange}
-              />
-              <button className="searchBtn">Search</button>
+            <div className="hamburger" onClick={toggleMenu}>
+              <i className={menuOpen ? "fa fa-times" : "fa fa-bars"}></i>
             </div>
 
-            <div className="dark-light-mode">
-              <button className="themeBtn" onClick={handleToggle}>
-                {theme === "light" ? (
-                  <span>
-                    <i className="fa-solid fa-sun"></i>
-                    &nbsp;
-                  </span>
-                ) : (
-                  <span>
-                    <i className="fa-solid fa-moon"></i>&nbsp;
-                  </span>
-                )}
-              </button>
-            </div>
+            {menuOpen && (
+              <div className="nav-links-mobile">
+                <Link to="/">Home</Link>
+                <Link to="/about">About</Link>
+                <Link to="/contact">Contact</Link>
+
+                <div className="search-bar-mobile">
+                  <input
+                    type="text"
+                    id="search"
+                    className="search"
+                    placeholder="Search title"
+                    value={searchItem}
+                    onChange={handleInputChange}
+                  />
+                  <button className="searchBtn">Search</button>
+                </div>
+
+                <button className="themeBtn" onClick={handleToggle}>
+                  {theme === "light" ? (
+                    <span>
+                      <i className="fa-solid fa-sun"></i>&nbsp; Light Mode
+                    </span>
+                  ) : (
+                    <span>
+                      <i className="fa-solid fa-moon"></i>&nbsp; Dark Mode
+                    </span>
+                  )}
+                </button>
+              </div>
+            )}
+
+            {!menuOpen && (
+              <>
+                <div className="search-bar">
+                  <input
+                    type="text"
+                    id="search"
+                    className="search"
+                    placeholder="search title"
+                    value={searchItem}
+                    onChange={handleInputChange}
+                  />
+                  <button className="searchBtn">Search</button>
+                </div>
+
+                <div className="dark-light-mode">
+                  <button className="themeBtn" onClick={handleToggle}>
+                    {theme === "light" ? (
+                      <span>
+                        <i className="fa-solid fa-sun"></i>&nbsp;
+                      </span>
+                    ) : (
+                      <span>
+                        <i className="fa-solid fa-moon"></i>&nbsp;
+                      </span>
+                    )}
+                  </button>
+                </div>
+              </>
+            )}
           </section>
 
           <section className="cards">
