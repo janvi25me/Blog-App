@@ -28,6 +28,7 @@ const ScrollToTop = () => {
   return (
     isVisible && (
       <button
+        className="scroll-to-top-btn"
         onClick={handleScrollToTop}
         style={{
           position: "fixed",
@@ -37,7 +38,9 @@ const ScrollToTop = () => {
           backgroundColor: "#007bff",
           color: "#fff",
           border: "none",
-          borderRadius: "30%",
+          width: "50px",
+          height: "50px",
+          borderRadius: "50%",
           cursor: "pointer",
         }}
       >

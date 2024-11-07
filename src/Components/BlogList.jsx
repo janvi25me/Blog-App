@@ -58,38 +58,42 @@ const BlogList = ({ posts }) => {
             </div>
 
             <div className="hamburger" onClick={toggleMenu}>
-              <i className={menuOpen ? "fa fa-times" : "fa fa-bars"}></i>
+              <i
+                className={
+                  menuOpen
+                    ? "fa-solid fa-square-xmark close-btn"
+                    : "fa-solid fa-bars"
+                }
+              ></i>
             </div>
 
             {menuOpen && (
-              <div className="nav-links-mobile">
-                <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
+              <div className="nav">
+                <div className="nav-links-mobile">
+                  <div className="search-bar-mobile">
+                    <input
+                      type="text"
+                      id="search"
+                      className="search"
+                      placeholder="Search title"
+                      value={searchItem}
+                      onChange={handleInputChange}
+                    />
+                    <button className="searchBtn">Search</button>
+                  </div>
 
-                <div className="search-bar-mobile">
-                  <input
-                    type="text"
-                    id="search"
-                    className="search"
-                    placeholder="Search title"
-                    value={searchItem}
-                    onChange={handleInputChange}
-                  />
-                  <button className="searchBtn">Search</button>
+                  <button className="themeBtn" onClick={handleToggle}>
+                    {theme === "light" ? (
+                      <span>
+                        <i className="fa-solid fa-sun"></i>&nbsp; Light Mode
+                      </span>
+                    ) : (
+                      <span>
+                        <i className="fa-solid fa-moon"></i>&nbsp; Dark Mode
+                      </span>
+                    )}
+                  </button>
                 </div>
-
-                <button className="themeBtn" onClick={handleToggle}>
-                  {theme === "light" ? (
-                    <span>
-                      <i className="fa-solid fa-sun"></i>&nbsp; Light Mode
-                    </span>
-                  ) : (
-                    <span>
-                      <i className="fa-solid fa-moon"></i>&nbsp; Dark Mode
-                    </span>
-                  )}
-                </button>
               </div>
             )}
 

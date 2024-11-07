@@ -38,9 +38,9 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-radius: 10px;
     margin-bottom: 20px;
-    /* border: 1px solid green; */
+    /* border-radius: 10px;
+    border: 1px solid green; */
   }
   
   input {
@@ -173,8 +173,8 @@ body[data-theme='light'] {
     align-items: center;
     justify-content: center;
     gap: 1em;
-    padding: 0;
-    margin: 0;
+    /* padding: 0;
+    margin: 0; */
   }
   
   .pagination li {
@@ -219,8 +219,9 @@ body[data-theme='light'] {
 
   .details-container .backBtn {
     position: absolute;
-    top:4%;
-    left: 40%;
+    top:3.5%;
+    left: 14%;
+    color: #131616;
   }
   .details-container h2 {
     text-decoration: underline;
@@ -243,54 +244,77 @@ body[data-theme='light'] {
     margin-left: 20px;
   }
 
-  /* Hamburger menu */
-
-  .hamburger {
-    display: none;
-    cursor: pointer;
-    font-size: 24px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 15px;
+  /* Hamburger Menu  */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
 }
 
 .nav-links-mobile {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  width: 100vw; 
+  height: 180px;
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding-top: 20px; */
+}
+
+.search-bar-mobile input,
+.themeBtn {
+  width: 100%;
 }
 
 /* Adding Mobile Responsiveness */
-
 @media (max-width: 768px) {
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 10px;
-    }
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    input {
-        width: 100%;
-        margin: 10px 0;
-    }
-    .blogList-container {
-        padding: 10px;
-    }
+  .header {
+    justify-content: space-between;
+    width: 100%;
+  }
 
-    .card-img {
-        height: 150px;
-    }
+  .search-bar {
+    display: none;
+  }
 
-    .details-container .backBtn {
-        position: relative;
-    }
+  .dark-light-mode {
+    display: none;
+  }
+  input, button {
+    width: 100%;
+    margin: 10px 0;
+}
+input {
+  display: flex;
+}
+.blogList-container {
+  padding: 10px;
+}
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .card-img {
+    height: 150px;
+  }
+
+  .hamburger {
+    display: flex;
+    margin-right: 3rem;
+  }
 
 }
+
+
+
+
+
